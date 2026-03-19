@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ceat4aj4ngfec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7v5d"]
+bg_color = Color(1, 0.3529412, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.1764706, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4ekh"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_215jv"]
+bg_color = Color(1, 0.1764706, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.1764706, 0, 1)
+
+[node name="Default BTN" type="Button" unique_id=1735193444]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 102.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7v5d")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s4ekh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_215jv")
+text = "CONTINUAR"
