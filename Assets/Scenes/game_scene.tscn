@@ -21,9 +21,6 @@ func _process(delta: float) -> void:
 	progress_ratio += 1 * delta
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_330yb"]
-bg_color = Color(0, 0, 0, 0.1254902)
-
 [sub_resource type="Animation" id="Animation_330yb"]
 resource_name = "Pause Down"
 length = 0.35
@@ -114,6 +111,9 @@ _data = {
 &"RESET": SubResource("Animation_s65mb")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_330yb"]
+bg_color = Color(0, 0, 0, 0.1254902)
+
 [node name="Game Scene" type="Node" unique_id=531808466 node_paths=PackedStringArray("ui_animator")]
 process_mode = 3
 script = ExtResource("1_yub04")
@@ -147,6 +147,10 @@ pause_btn = NodePath("UI Container/Pause BTN")
 resume_btn = NodePath("Pause Panel/Pause Menu/Resume BTN")
 back_btn = NodePath("Pause Panel/Pause Menu/Back BTN")
 quit_btn = NodePath("Pause Panel/Pause Menu/Quit BTN")
+
+[node name="UI Animator" type="AnimationPlayer" parent="UI" unique_id=181165887]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_ei1hv")
 
 [node name="UI Container" type="MarginContainer" parent="UI" unique_id=169732657]
 layout_mode = 1
@@ -203,10 +207,6 @@ text = "VOLTAR AO MENU"
 [node name="Quit BTN" parent="UI/Pause Panel/Pause Menu" unique_id=778369006 instance=ExtResource("2_odgft")]
 layout_mode = 2
 text = "SAIR"
-
-[node name="UI Animator" type="AnimationPlayer" parent="UI" unique_id=181165887]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_ei1hv")
 
 [connection signal="pressed" from="UI/UI Container/Pause BTN" to="UI" method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Resume BTN" to="UI" method="_on_resume_btn_pressed"]

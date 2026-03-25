@@ -3,10 +3,10 @@ extends Control
 @export_category("Scenes Refs")
 @export var scene : Node
 @export_category("Buttons Refs")
-@export var pause_btn : TextureButton
-@export var resume_btn : Button
-@export var back_btn : Button
-@export var quit_btn : Button
+@export var pause_btn : BaseButton
+@export var resume_btn : BaseButton
+@export var back_btn : BaseButton
+@export var quit_btn : BaseButton
 
 func _on_pause_btn_pressed() -> void:
 	scene.go_to_paused()
