@@ -6,6 +6,20 @@
 [ext_resource type="Script" uid="uid://bxyb1c3vufao2" path="res://Assets/Scripts/ui_manager.gd" id="2_s65mb"]
 [ext_resource type="Texture2D" uid="uid://c2v5a342w2334" path="res://Assets/UI/Pause_btn_pressed_placeholder.png" id="3_330yb"]
 [ext_resource type="Texture2D" uid="uid://bfyn8ttpp1y44" path="res://Assets/UI/Pause_btn_hover_placeholder.png" id="4_odgft"]
+[ext_resource type="Texture2D" uid="uid://cg0ynjohpqhg7" path="res://icon.svg" id="7_ei1hv"]
+
+[sub_resource type="Curve2D" id="Curve2D_ei1hv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -64, 180, 0, 0, 0, 0, 704, 180)
+}
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_jnnlc"]
+script/source = "extends PathFollow2D
+
+func _process(delta: float) -> void:
+	progress_ratio += 1 * delta
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_330yb"]
 bg_color = Color(0, 0, 0, 0.1254902)
@@ -25,6 +39,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 360)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UI Container/Pause BTN:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_odgft"]
 resource_name = "Pause Up"
@@ -41,6 +67,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 360), Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UI Container/Pause BTN:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_s65mb"]
 length = 0.001
@@ -56,6 +94,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 360)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UI Container/Pause BTN:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ei1hv"]
 _data = {
@@ -64,11 +114,25 @@ _data = {
 &"RESET": SubResource("Animation_s65mb")
 }
 
-[node name="Game Scene" type="Node" unique_id=531808466]
+[node name="Game Scene" type="Node" unique_id=531808466 node_paths=PackedStringArray("ui_animator")]
 process_mode = 3
 script = ExtResource("1_yub04")
+ui_animator = NodePath("UI/UI Animator")
 
-[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene")]
+[node name="Game Actors" type="Node" parent="." unique_id=1020269354]
+process_mode = 1
+
+[node name="Path2D" type="Path2D" parent="Game Actors" unique_id=1687445771]
+curve = SubResource("Curve2D_ei1hv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Game Actors/Path2D" unique_id=1735615075]
+position = Vector2(-64, 180)
+script = SubResource("GDScript_jnnlc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Game Actors/Path2D/PathFollow2D" unique_id=757415792]
+texture = ExtResource("7_ei1hv")
+
+[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene", "pause_btn", "resume_btn", "back_btn", "quit_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +143,30 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("2_s65mb")
 scene = NodePath("..")
+pause_btn = NodePath("UI Container/Pause BTN")
+resume_btn = NodePath("Pause Panel/Pause Menu/Resume BTN")
+back_btn = NodePath("Pause Panel/Pause Menu/Back BTN")
+quit_btn = NodePath("Pause Panel/Pause Menu/Quit BTN")
+
+[node name="UI Container" type="MarginContainer" parent="UI" unique_id=169732657]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Pause BTN" type="TextureButton" parent="UI/UI Container" unique_id=1516113862]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("2_4aml7")
+texture_pressed = ExtResource("3_330yb")
+texture_hover = ExtResource("4_odgft")
 
 [node name="Pause Panel" type="Panel" parent="UI" unique_id=351946843]
 layout_mode = 1
@@ -86,7 +174,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 360.0
-offset_bottom = 360.0011
+offset_bottom = 360.00183
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_330yb")
@@ -116,29 +204,11 @@ text = "VOLTAR AO MENU"
 layout_mode = 2
 text = "SAIR"
 
-[node name="UI Container" type="MarginContainer" parent="UI" unique_id=169732657]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="Pause BTN" type="TextureButton" parent="UI/UI Container" unique_id=1516113862]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = ExtResource("2_4aml7")
-texture_pressed = ExtResource("3_330yb")
-texture_hover = ExtResource("4_odgft")
-
 [node name="UI Animator" type="AnimationPlayer" parent="UI" unique_id=181165887]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_ei1hv")
-autoplay = &"Pause Up"
 
 [connection signal="pressed" from="UI/UI Container/Pause BTN" to="UI" method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="UI/Pause Panel/Pause Menu/Resume BTN" to="UI" method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="UI/Pause Panel/Pause Menu/Back BTN" to="UI" method="_on_back_btn_pressed"]
+[connection signal="pressed" from="UI/Pause Panel/Pause Menu/Quit BTN" to="UI" method="_on_quit_btn_pressed"]
