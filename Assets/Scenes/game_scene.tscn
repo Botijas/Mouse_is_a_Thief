@@ -2,24 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bkdjh5a6b3ly7" path="res://Assets/Scripts/game_manager.gd" id="1_yub04"]
 [ext_resource type="Texture2D" uid="uid://culqtv6nnxlfw" path="res://Assets/UI/Pause_btn_placeholder.png" id="2_4aml7"]
+[ext_resource type="Texture2D" uid="uid://vhyvp2h00rod" path="res://Assets/Sprites/Under_Timer_Wheel_Placeholder.png" id="2_e132u"]
+[ext_resource type="Texture2D" uid="uid://d03rikqsfq1ka" path="res://Assets/Sprites/Timer_Wheel_Placeholder.png" id="2_ei1hv"]
+[ext_resource type="Shader" uid="uid://d3dklvwpo4bb0" path="res://Assets/Shaders/CircularProgressBar.gdshader" id="2_jnnlc"]
 [ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="2_odgft"]
 [ext_resource type="Script" uid="uid://bxyb1c3vufao2" path="res://Assets/Scripts/ui_manager.gd" id="2_s65mb"]
 [ext_resource type="Texture2D" uid="uid://c2v5a342w2334" path="res://Assets/UI/Pause_btn_pressed_placeholder.png" id="3_330yb"]
+[ext_resource type="Script" uid="uid://dh0cmfklr7hwa" path="res://Assets/Scripts/mouse_progress_bar.gd" id="3_t6p80"]
 [ext_resource type="Texture2D" uid="uid://bfyn8ttpp1y44" path="res://Assets/UI/Pause_btn_hover_placeholder.png" id="4_odgft"]
-[ext_resource type="Texture2D" uid="uid://cg0ynjohpqhg7" path="res://icon.svg" id="7_ei1hv"]
 
-[sub_resource type="Curve2D" id="Curve2D_ei1hv"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -64, 180, 0, 0, 0, 0, 704, 180)
-}
-point_count = 2
-
-[sub_resource type="GDScript" id="GDScript_jnnlc"]
-script/source = "extends PathFollow2D
-
-func _process(delta: float) -> void:
-	progress_ratio += 1 * delta
-"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e132u"]
+shader = ExtResource("2_jnnlc")
+shader_parameter/progress = 1.0
 
 [sub_resource type="Animation" id="Animation_330yb"]
 resource_name = "Pause Down"
@@ -122,17 +116,21 @@ ui_animator = NodePath("UI/UI Animator")
 [node name="Game Actors" type="Node" parent="." unique_id=1020269354]
 process_mode = 1
 
-[node name="Path2D" type="Path2D" parent="Game Actors" unique_id=1687445771]
-curve = SubResource("Curve2D_ei1hv")
+[node name="Player Stuffs" type="Node" parent="Game Actors" unique_id=707812627]
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Game Actors/Path2D" unique_id=1735615075]
-position = Vector2(-64, 180)
-script = SubResource("GDScript_jnnlc")
+[node name="Mouse Texture" type="Sprite2D" parent="Game Actors/Player Stuffs" unique_id=1165700858 node_paths=PackedStringArray("over_texture")]
+z_index = 1
+texture = ExtResource("2_e132u")
+script = ExtResource("3_t6p80")
+over_texture = NodePath("Over Mouse Texture")
 
-[node name="Sprite2D" type="Sprite2D" parent="Game Actors/Path2D/PathFollow2D" unique_id=757415792]
-texture = ExtResource("7_ei1hv")
+[node name="Over Mouse Texture" type="Sprite2D" parent="Game Actors/Player Stuffs/Mouse Texture" unique_id=1159699820]
+material = SubResource("ShaderMaterial_e132u")
+rotation = 1.5707964
+texture = ExtResource("2_ei1hv")
 
 [node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene", "pause_btn", "resume_btn", "back_btn", "quit_btn")]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
