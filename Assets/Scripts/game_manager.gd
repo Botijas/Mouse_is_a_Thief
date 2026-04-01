@@ -9,6 +9,11 @@ var actual_game_state : GAME_STATES = GAME_STATES.Playing
 
 @export var ui_animator : AnimationPlayer
 
+signal lose(to: String)
+
+func _ready() -> void:
+	lose.connect(_on_lose)
+
 func _process(delta: float) -> void:
 	match actual_game_state:
 		#Playing
@@ -24,7 +29,6 @@ func _process(delta: float) -> void:
 		2:
 			if get_tree().paused != true:
 				get_tree().paused = true
-		
 
 func _input(event: InputEvent) -> void:
 	# Este "if" verifica se o input pause foi precionado
@@ -44,3 +48,7 @@ func go_to_playing() -> void:
 func go_to_paused() -> void:
 	actual_game_state = GAME_STATES.Paused
 	ui_animator.play("Pause Up")
+
+func _on_lose(to: String):
+	if to == "wait_time":
+		print("Você ficou parado")
