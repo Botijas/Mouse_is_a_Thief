@@ -126,6 +126,16 @@ process_mode = 1
 
 [node name="Player Stuffs" type="Node" parent="Game Actors" unique_id=707812627]
 
+[node name="Player" type="CharacterBody2D" parent="Game Actors/Player Stuffs" unique_id=373247231 groups=["Player"]]
+position = Vector2(320, 180)
+motion_mode = 1
+script = ExtResource("6_qmpwi")
+
+[node name="Texture" type="Sprite2D" parent="Game Actors/Player Stuffs/Player" unique_id=240042028]
+texture = ExtResource("7_yk65x")
+
+[node name="Collision" type="CollisionShape2D" parent="Game Actors/Player Stuffs/Player" unique_id=1740205084]
+
 [node name="Mouse Texture" type="Sprite2D" parent="Game Actors/Player Stuffs" unique_id=1165700858 node_paths=PackedStringArray("game_scene", "over_texture")]
 material = SubResource("ShaderMaterial_6450k")
 texture = ExtResource("2_e132u")
@@ -137,16 +147,6 @@ over_texture = NodePath("Over Mouse Texture")
 material = SubResource("ShaderMaterial_e132u")
 rotation = 1.5707964
 texture = ExtResource("2_ei1hv")
-
-[node name="Player" type="CharacterBody2D" parent="Game Actors/Player Stuffs" unique_id=373247231 groups=["Player"]]
-position = Vector2(320, 180)
-motion_mode = 1
-script = ExtResource("6_qmpwi")
-
-[node name="Texture" type="Sprite2D" parent="Game Actors/Player Stuffs/Player" unique_id=240042028]
-texture = ExtResource("7_yk65x")
-
-[node name="Collision" type="CollisionShape2D" parent="Game Actors/Player Stuffs/Player" unique_id=1740205084]
 
 [node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene", "pause_btn", "resume_btn", "back_btn", "quit_btn")]
 z_index = 2

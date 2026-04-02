@@ -50,5 +50,6 @@ func go_to_paused() -> void:
 	ui_animator.play("Pause Up")
 
 func _on_lose(to: String):
-	if to == "wait_time":
-		print("Você ficou parado")
+	match to:
+		"wait_time":
+			print("Você ficou parado")
