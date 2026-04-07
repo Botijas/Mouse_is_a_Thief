@@ -53,3 +53,5 @@ func _on_lose(to: String):
 	match to:
 		"wait_time":
 			print("Você ficou parado")
+		"civil":
+			print("Você esbarrou no Civil")

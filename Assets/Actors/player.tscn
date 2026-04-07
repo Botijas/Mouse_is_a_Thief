@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://lwino5lk0tld"]
+
+[ext_resource type="Script" uid="uid://sdn76sh5ovpi" path="res://Assets/Scripts/player.gd" id="1_kapx6"]
+[ext_resource type="Texture2D" uid="uid://cl6rxgqosc761" path="res://Assets/Sprites/Mouse_Placeholder.png" id="2_dx322"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yk65x"]
+radius = 12.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1466247226 groups=["Player"]]
+motion_mode = 1
+script = ExtResource("1_kapx6")
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=534179018]
+texture = ExtResource("2_dx322")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1399558177]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_yk65x")

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dxdxeyk5h015g"]
+
+[ext_resource type="Script" uid="uid://be301qb8wa6hy" path="res://Assets/Scripts/civil_enemy.gd" id="1_6e8ad"]
+[ext_resource type="Texture2D" uid="uid://b7ledwo2ihlc1" path="res://Assets/Sprites/Walk_Enemy_Placeholder.png" id="1_eqngq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6e8ad"]
+radius = 8.0
+height = 28.0
+
+[node name="Civil Enemy" type="CharacterBody2D" unique_id=2049861081]
+script = ExtResource("1_6e8ad")
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=757596654]
+texture = ExtResource("1_eqngq")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=160885320]
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1325394020]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6e8ad")
+debug_color = Color(0.88, 0.3168, 0.3168, 0.41960785)
+
+[node name="Visible On Screen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1762854775]
+rect = Rect2(-14, -8, 28, 16)
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="Visible On Screen" to="." method="_on_visible_on_screen_screen_exited"]

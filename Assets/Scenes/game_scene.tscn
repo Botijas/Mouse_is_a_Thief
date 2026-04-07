@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://d03rikqsfq1ka" path="res://Assets/Sprites/Timer_Wheel_Placeholder.png" id="2_ei1hv"]
 [ext_resource type="Shader" uid="uid://d3dklvwpo4bb0" path="res://Assets/Shaders/CircularProgressBar.gdshader" id="2_jnnlc"]
 [ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="2_odgft"]
+[ext_resource type="PackedScene" uid="uid://lwino5lk0tld" path="res://Assets/Actors/player.tscn" id="2_qmpwi"]
 [ext_resource type="Script" uid="uid://bxyb1c3vufao2" path="res://Assets/Scripts/ui_manager.gd" id="2_s65mb"]
 [ext_resource type="Shader" uid="uid://d4f17w77wkb2d" path="res://Assets/Shaders/transparency.gdshader" id="2_yk65x"]
 [ext_resource type="Texture2D" uid="uid://c2v5a342w2334" path="res://Assets/UI/Pause_btn_pressed_placeholder.png" id="3_330yb"]
 [ext_resource type="Script" uid="uid://dh0cmfklr7hwa" path="res://Assets/Scripts/mouse_progress_bar.gd" id="3_t6p80"]
 [ext_resource type="Texture2D" uid="uid://bfyn8ttpp1y44" path="res://Assets/UI/Pause_btn_hover_placeholder.png" id="4_odgft"]
-[ext_resource type="Script" uid="uid://sdn76sh5ovpi" path="res://Assets/Scripts/player.gd" id="6_qmpwi"]
-[ext_resource type="Texture2D" uid="uid://cl6rxgqosc761" path="res://Assets/Sprites/Mouse_Placeholder.png" id="7_yk65x"]
+[ext_resource type="PackedScene" uid="uid://dxdxeyk5h015g" path="res://Assets/Actors/civil_enemy.tscn" id="8_yk65x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6450k"]
 shader = ExtResource("2_yk65x")
@@ -126,15 +126,8 @@ process_mode = 1
 
 [node name="Player Stuffs" type="Node" parent="Game Actors" unique_id=707812627]
 
-[node name="Player" type="CharacterBody2D" parent="Game Actors/Player Stuffs" unique_id=373247231 groups=["Player"]]
+[node name="Player" parent="Game Actors/Player Stuffs" unique_id=1466247226 instance=ExtResource("2_qmpwi")]
 position = Vector2(320, 180)
-motion_mode = 1
-script = ExtResource("6_qmpwi")
-
-[node name="Texture" type="Sprite2D" parent="Game Actors/Player Stuffs/Player" unique_id=240042028]
-texture = ExtResource("7_yk65x")
-
-[node name="Collision" type="CollisionShape2D" parent="Game Actors/Player Stuffs/Player" unique_id=1740205084]
 
 [node name="Mouse Texture" type="Sprite2D" parent="Game Actors/Player Stuffs" unique_id=1165700858 node_paths=PackedStringArray("game_scene", "over_texture")]
 material = SubResource("ShaderMaterial_6450k")
@@ -147,6 +140,8 @@ over_texture = NodePath("Over Mouse Texture")
 material = SubResource("ShaderMaterial_e132u")
 rotation = 1.5707964
 texture = ExtResource("2_ei1hv")
+
+[node name="Civil Enemy" parent="Game Actors" unique_id=2049861081 instance=ExtResource("8_yk65x")]
 
 [node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene", "pause_btn", "resume_btn", "back_btn", "quit_btn")]
 z_index = 2
@@ -195,7 +190,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 360.0
-offset_bottom = 360.00183
+offset_bottom = 360.00238
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_330yb")
