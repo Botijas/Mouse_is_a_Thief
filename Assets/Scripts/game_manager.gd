@@ -7,6 +7,8 @@ enum GAME_STATES {
 
 var actual_game_state : GAME_STATES = GAME_STATES.Playing
 
+var points : int = 0
+
 @export var ui_animator : AnimationPlayer
 
 signal lose(to: String)
@@ -40,6 +42,9 @@ func _input(event: InputEvent) -> void:
 				go_to_paused()
 			elif actual_game_state == GAME_STATES.Paused:
 				go_to_playing()
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		points += 1
 
 func go_to_playing() -> void:
 	actual_game_state = GAME_STATES.Playing

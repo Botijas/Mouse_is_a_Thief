@@ -25,7 +25,7 @@ func start_movement() -> void:
 	# Define os parametros do Movimento
 	horizontal_movement = randi_range(0, 1)
 	positive_movement = randi_range(0, 1)
-	speed_multiplier = randf_range(0.75, 1.5)
+	speed_multiplier = randf_range(0.75, 1.20)
 	
 	if horizontal_movement: 
 		if positive_movement:
@@ -55,6 +55,7 @@ func start_movement() -> void:
 			end_position.x = randf_range(-32, 640 + 32)
 	
 	global_position = initial_position
+	get_node("Coin").visible = true
 
 func _on_visible_on_screen_screen_exited() -> void:
 	start_movement()

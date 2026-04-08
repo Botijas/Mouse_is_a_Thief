@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://be301qb8wa6hy" path="res://Assets/Scripts/civil_enemy.gd" id="1_6e8ad"]
 [ext_resource type="Texture2D" uid="uid://b7ledwo2ihlc1" path="res://Assets/Sprites/Walk_Enemy_Placeholder.png" id="1_eqngq"]
+[ext_resource type="PackedScene" uid="uid://ttepx562janv" path="res://Assets/Actors/coin.tscn" id="3_k04r8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6e8ad"]
-radius = 8.0
-height = 28.0
+radius = 6.0
+height = 24.0
 
 [node name="Civil Enemy" type="CharacterBody2D" unique_id=2049861081]
+motion_mode = 1
 script = ExtResource("1_6e8ad")
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=757596654]
@@ -22,6 +24,9 @@ debug_color = Color(0.88, 0.3168, 0.3168, 0.41960785)
 
 [node name="Visible On Screen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1762854775]
 rect = Rect2(-14, -8, 28, 16)
+
+[node name="Coin" parent="." unique_id=184351232 instance=ExtResource("3_k04r8")]
+position = Vector2(-32, 0)
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="screen_exited" from="Visible On Screen" to="." method="_on_visible_on_screen_screen_exited"]

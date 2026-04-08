@@ -7,6 +7,12 @@ extends Control
 @export var resume_btn : BaseButton
 @export var back_btn : BaseButton
 @export var quit_btn : BaseButton
+@export var restart_btn : BaseButton
+@export_category("Score Refs")
+@export var score : Label
+
+func _physics_process(delta: float) -> void:
+	score.text = str(scene.points)
 
 func _on_pause_btn_pressed() -> void:
 	scene.go_to_paused()
@@ -17,9 +23,12 @@ func _on_resume_btn_pressed() -> void:
 	resume_btn.set_focus_mode(FOCUS_NONE)
 
 func _on_back_btn_pressed() -> void:
-	
 	back_btn.set_focus_mode(FOCUS_NONE) 
 
 func _on_quit_btn_pressed() -> void:
 	get_tree().quit() 
 	quit_btn.set_focus_mode(FOCUS_NONE)
+
+func _on_restart_btn_pressed() -> void:
+	get_tree().reload_current_scene()
+	restart_btn.set_focus_mode(FOCUS_NONE)
