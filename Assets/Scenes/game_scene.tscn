@@ -23,6 +23,46 @@ shader = ExtResource("2_jnnlc")
 shader_parameter/progress = 0.670000031825
 shader_parameter/alpha = 1.0
 
+[sub_resource type="Animation" id="Animation_yk65x"]
+resource_name = "Lose Down"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/UI Container/Pause BTN:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Lose Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -360), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UI Container/Score:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_330yb"]
 resource_name = "Pause Down"
 length = 0.35
@@ -45,6 +85,18 @@ tracks/1/path = NodePath("UI/UI Container/Pause BTN:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UI Container/Score:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.35),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -78,6 +130,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UI Container/Score:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_s65mb"]
 length = 0.001
@@ -105,9 +169,34 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Lose Panel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -360)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/UI Container/Score:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ei1hv"]
 _data = {
+&"Lose Down": SubResource("Animation_yk65x"),
 &"Pause Down": SubResource("Animation_330yb"),
 &"Pause Up": SubResource("Animation_odgft"),
 &"RESET": SubResource("Animation_s65mb")
@@ -129,10 +218,38 @@ color = Color(0.5, 0.5, 0.5, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_oljyh"]
 font_size = 24
 
-[node name="Game Scene" type="Node" unique_id=531808466 node_paths=PackedStringArray("ui_animator")]
+[sub_resource type="LabelSettings" id="LabelSettings_6450k"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oljyh"]
+bg_color = Color(1, 0.3529412, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.1764706, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp0uh"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tresg"]
+bg_color = Color(1, 0.1764706, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.1764706, 0, 1)
+
+[node name="Game Scene" type="Node" unique_id=531808466 node_paths=PackedStringArray("ui_animator", "ui_manager")]
 process_mode = 3
 script = ExtResource("1_yub04")
 ui_animator = NodePath("UI/UI Animator")
+ui_manager = NodePath("UI")
 
 [node name="Game Actors" type="Node" parent="." unique_id=1020269354]
 process_mode = 1
@@ -158,7 +275,7 @@ texture = ExtResource("2_ei1hv")
 script = ExtResource("8_6450k")
 game_scene = NodePath("../..")
 
-[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("scene", "pause_btn", "resume_btn", "back_btn", "quit_btn", "restart_btn", "score")]
+[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("game_scene", "pause_btn", "resume_btn", "back_btn", "quit_btn", "restart_btn", "score", "last_score", "high_score")]
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -169,13 +286,15 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("2_s65mb")
-scene = NodePath("..")
+game_scene = NodePath("..")
 pause_btn = NodePath("UI Container/Pause BTN")
 resume_btn = NodePath("Pause Panel/Pause Menu/Resume BTN")
 back_btn = NodePath("Pause Panel/Pause Menu/Back BTN")
 quit_btn = NodePath("Pause Panel/Pause Menu/Quit BTN")
-restart_btn = NodePath("Lose Panel/MarginContainer/Restart BTN")
+restart_btn = NodePath("Lose Panel/MarginContainer/Score and Restart Box/Restart BTN")
 score = NodePath("UI Container/Score")
+last_score = NodePath("Lose Panel/MarginContainer/Score and Restart Box/Last Score Box/Score")
+high_score = NodePath("Lose Panel/MarginContainer/Score and Restart Box/High Score Box/Score")
 
 [node name="UI Animator" type="AnimationPlayer" parent="UI" unique_id=181165887]
 root_node = NodePath("../..")
@@ -205,6 +324,7 @@ texture_hover = ExtResource("4_odgft")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -214,7 +334,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 360.0
-offset_bottom = 360.00238
+offset_bottom = 360.00244
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_330yb")
@@ -262,9 +382,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
+theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
 [node name="Text Box" type="VBoxContainer" parent="UI/Lose Panel/MarginContainer" unique_id=542689415]
@@ -290,14 +410,57 @@ label_settings = SubResource("LabelSettings_oljyh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Restart BTN" parent="UI/Lose Panel/MarginContainer" unique_id=721486383 instance=ExtResource("2_odgft")]
+[node name="Score and Restart Box" type="HBoxContainer" parent="UI/Lose Panel/MarginContainer" unique_id=2037499313]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Last Score Box" type="VBoxContainer" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=764931400]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Text" type="Label" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/Last Score Box" unique_id=103643706]
+layout_mode = 2
+text = "Last Score"
+label_settings = SubResource("LabelSettings_6450k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/Last Score Box" unique_id=1503028029]
+layout_mode = 2
+text = "---"
+label_settings = SubResource("LabelSettings_6450k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=721486383 instance=ExtResource("2_odgft")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_oljyh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wp0uh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tresg")
 text = "RECOMEÇAR"
+
+[node name="High Score Box" type="VBoxContainer" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=267650573]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Text" type="Label" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/High Score Box" unique_id=259798297]
+layout_mode = 2
+text = "High Score"
+label_settings = SubResource("LabelSettings_6450k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/High Score Box" unique_id=1198903889]
+layout_mode = 2
+text = "---"
+label_settings = SubResource("LabelSettings_6450k")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="UI/UI Container/Pause BTN" to="UI" method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Resume BTN" to="UI" method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Back BTN" to="UI" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Quit BTN" to="UI" method="_on_quit_btn_pressed"]
-[connection signal="pressed" from="UI/Lose Panel/MarginContainer/Restart BTN" to="UI" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/Lose Panel/MarginContainer/Score and Restart Box/Restart BTN" to="UI" method="_on_restart_btn_pressed"]

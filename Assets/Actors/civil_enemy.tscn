@@ -23,7 +23,7 @@ shape = SubResource("CapsuleShape2D_6e8ad")
 debug_color = Color(0.88, 0.3168, 0.3168, 0.41960785)
 
 [node name="Visible On Screen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1762854775]
-rect = Rect2(-14, -8, 28, 16)
+rect = Rect2(-40, -8, 54, 16)
 
 [node name="Coin" parent="." unique_id=184351232 instance=ExtResource("3_k04r8")]
 position = Vector2(-32, 0)
