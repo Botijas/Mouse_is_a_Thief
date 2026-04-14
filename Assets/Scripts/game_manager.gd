@@ -47,9 +47,6 @@ func _input(event: InputEvent) -> void:
 				go_to_paused()
 			elif actual_game_state == GAME_STATES.Paused:
 				go_to_playing()
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		points += 1
 
 func save_data() -> void:
 	var data := {
@@ -102,4 +99,5 @@ func go_to_losing(to: String) -> void:
 
 func _on_lose(to: String):
 	save_data()
+	ui_manager.set_lose_reason(to)
 	go_to_losing(to)

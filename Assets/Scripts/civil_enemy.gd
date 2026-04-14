@@ -6,7 +6,7 @@ var positive_movement : bool
 var initial_position : Vector2
 var end_position : Vector2
 
-var speed : float = 300
+var speed : float = 265
 var speed_multiplier : float
 
 func _ready() -> void:

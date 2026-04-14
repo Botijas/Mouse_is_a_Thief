@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://uoi8c57am5gf"]
+
+[ext_resource type="Script" uid="uid://cg2sh48bexwe" path="res://Assets/Scripts/main_menu.gd" id="1_fsbqx"]
+[ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="1_x6jn2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_77rv3"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_cbhea"]
+font_size = 24
+
+[node name="Main Menu" type="Control" unique_id=1014350268 node_paths=PackedStringArray("score", "play_btn", "tutorial_btn", "quit_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsbqx")
+score = NodePath("MarginContainer/Score Container/Score")
+play_btn = NodePath("MarginContainer/BTN Container/Play BTN")
+tutorial_btn = NodePath("MarginContainer/BTN Container/Tutorial BTN")
+quit_btn = NodePath("MarginContainer/BTN Container/Quit BTN")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=752523209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Tittle" type="Label" parent="MarginContainer" unique_id=920675472]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Mouse is a Thief"
+label_settings = SubResource("LabelSettings_77rv3")
+
+[node name="Score Container" type="VBoxContainer" parent="MarginContainer" unique_id=1440167482]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Text" type="Label" parent="MarginContainer/Score Container" unique_id=1421438669]
+layout_mode = 2
+text = "High Score"
+label_settings = SubResource("LabelSettings_cbhea")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="MarginContainer/Score Container" unique_id=1472604934]
+layout_mode = 2
+text = "---"
+label_settings = SubResource("LabelSettings_cbhea")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BTN Container" type="HBoxContainer" parent="MarginContainer" unique_id=184276922]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Play BTN" parent="MarginContainer/BTN Container" unique_id=1735193444 instance=ExtResource("1_x6jn2")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "PLAY"
+
+[node name="Tutorial BTN" parent="MarginContainer/BTN Container" unique_id=1247370674 instance=ExtResource("1_x6jn2")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TUTORIAL"
+
+[node name="Quit BTN" parent="MarginContainer/BTN Container" unique_id=388644297 instance=ExtResource("1_x6jn2")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "QUIT"
+
+[connection signal="pressed" from="MarginContainer/BTN Container/Play BTN" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/BTN Container/Tutorial BTN" to="." method="_on_tutorial_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/BTN Container/Quit BTN" to="." method="_on_exit_btn_pressed"]

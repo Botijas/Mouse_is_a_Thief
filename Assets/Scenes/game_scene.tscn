@@ -275,7 +275,7 @@ texture = ExtResource("2_ei1hv")
 script = ExtResource("8_6450k")
 game_scene = NodePath("../..")
 
-[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("game_scene", "pause_btn", "resume_btn", "back_btn", "quit_btn", "restart_btn", "score", "last_score", "high_score")]
+[node name="UI" type="Control" parent="." unique_id=117714174 node_paths=PackedStringArray("game_scene", "pause_btn", "resume_btn", "back_btn", "quit_btn", "restart_btn", "return_btn", "score", "last_score", "high_score", "lose_reason")]
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -291,10 +291,12 @@ pause_btn = NodePath("UI Container/Pause BTN")
 resume_btn = NodePath("Pause Panel/Pause Menu/Resume BTN")
 back_btn = NodePath("Pause Panel/Pause Menu/Back BTN")
 quit_btn = NodePath("Pause Panel/Pause Menu/Quit BTN")
-restart_btn = NodePath("Lose Panel/MarginContainer/Score and Restart Box/Restart BTN")
+restart_btn = NodePath("Lose Panel/MarginContainer/Score and Restart Box/BTNs/Restart BTN")
+return_btn = NodePath("Lose Panel/MarginContainer/Score and Restart Box/BTNs/Return BTN")
 score = NodePath("UI Container/Score")
 last_score = NodePath("Lose Panel/MarginContainer/Score and Restart Box/Last Score Box/Score")
 high_score = NodePath("Lose Panel/MarginContainer/Score and Restart Box/High Score Box/Score")
+lose_reason = NodePath("Lose Panel/MarginContainer/Text Box/Lose Reason")
 
 [node name="UI Animator" type="AnimationPlayer" parent="UI" unique_id=181165887]
 root_node = NodePath("../..")
@@ -355,14 +357,15 @@ grow_vertical = 2
 
 [node name="Resume BTN" parent="UI/Pause Panel/Pause Menu" unique_id=1735193444 instance=ExtResource("2_odgft")]
 layout_mode = 2
+text = "CONTINUE"
 
 [node name="Back BTN" parent="UI/Pause Panel/Pause Menu" unique_id=431886116 instance=ExtResource("2_odgft")]
 layout_mode = 2
-text = "VOLTAR AO MENU"
+text = "RETURN TO MENU"
 
 [node name="Quit BTN" parent="UI/Pause Panel/Pause Menu" unique_id=778369006 instance=ExtResource("2_odgft")]
 layout_mode = 2
-text = "SAIR"
+text = "QUIT"
 
 [node name="Lose Panel" type="Panel" parent="UI" unique_id=1226767940]
 layout_mode = 1
@@ -394,7 +397,7 @@ size_flags_vertical = 0
 [node name="You Lose" type="Label" parent="UI/Lose Panel/MarginContainer/Text Box" unique_id=532503609]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Você Perdeu"
+text = "YOU LOSE"
 label_settings = SubResource("LabelSettings_yk65x")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -404,7 +407,7 @@ layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxLine_6450k")
 
-[node name="Lose To" type="Label" parent="UI/Lose Panel/MarginContainer/Text Box" unique_id=1511842089]
+[node name="Lose Reason" type="Label" parent="UI/Lose Panel/MarginContainer/Text Box" unique_id=1511842089]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_oljyh")
 horizontal_alignment = 1
@@ -432,14 +435,20 @@ label_settings = SubResource("LabelSettings_6450k")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Restart BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=721486383 instance=ExtResource("2_odgft")]
+[node name="BTNs" type="VBoxContainer" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=1224427381]
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Restart BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs" unique_id=721486383 instance=ExtResource("2_odgft")]
+layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_oljyh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wp0uh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tresg")
-text = "RECOMEÇAR"
+text = "RESTART"
+
+[node name="Return BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs" unique_id=986099281 instance=ExtResource("2_odgft")]
+layout_mode = 2
+text = "RETURN TO MENU"
 
 [node name="High Score Box" type="VBoxContainer" parent="UI/Lose Panel/MarginContainer/Score and Restart Box" unique_id=267650573]
 layout_mode = 2
@@ -463,4 +472,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Resume BTN" to="UI" method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Back BTN" to="UI" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Quit BTN" to="UI" method="_on_quit_btn_pressed"]
-[connection signal="pressed" from="UI/Lose Panel/MarginContainer/Score and Restart Box/Restart BTN" to="UI" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs/Restart BTN" to="UI" method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs/Return BTN" to="UI" method="_on_return_btn_pressed"]

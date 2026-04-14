@@ -33,4 +33,4 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_u7v5d")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_s4ekh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_215jv")
-text = "CONTINUAR"
+text = "DEFAULT"
