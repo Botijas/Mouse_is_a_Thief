@@ -1,2 +1,2 @@
-# mouse_is_a_thief_GIT
+# Mouse is a Thief GIT
 Git do projeto Mouse is a Thief
