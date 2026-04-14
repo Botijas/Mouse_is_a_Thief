@@ -55,7 +55,7 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="MarginContainer/Score Container" unique_id=1472604934]
 layout_mode = 2
-text = "---"
+text = "0"
 label_settings = SubResource("LabelSettings_cbhea")
 horizontal_alignment = 1
 vertical_alignment = 1
