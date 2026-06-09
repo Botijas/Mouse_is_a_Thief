@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://w4brf3y11cs8"
+path="res://.godot/imported/pluck_001.ogg-b613524a78bc15b83ff7e7bf97c205de.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/pluck_001.ogg"
+dest_files=["res://.godot/imported/pluck_001.ogg-b613524a78bc15b83ff7e7bf97c205de.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

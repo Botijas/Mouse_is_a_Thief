@@ -8,11 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="2_odgft"]
 [ext_resource type="PackedScene" uid="uid://lwino5lk0tld" path="res://Assets/Actors/player.tscn" id="2_qmpwi"]
 [ext_resource type="Script" uid="uid://bxyb1c3vufao2" path="res://Assets/Scripts/ui_manager.gd" id="2_s65mb"]
+[ext_resource type="AudioStream" uid="uid://bwqbgcficg50b" path="res://Assets/Sounds/Musics/Game Music (Minstrel Dance by RandomMind).mp3" id="2_tresg"]
 [ext_resource type="Shader" uid="uid://d4f17w77wkb2d" path="res://Assets/Shaders/transparency.gdshader" id="2_yk65x"]
 [ext_resource type="Texture2D" uid="uid://c2v5a342w2334" path="res://Assets/UI/Pause_btn_pressed_placeholder.png" id="3_330yb"]
 [ext_resource type="Script" uid="uid://dh0cmfklr7hwa" path="res://Assets/Scripts/mouse_progress_bar.gd" id="3_t6p80"]
+[ext_resource type="AudioStream" uid="uid://bh4ow80b016oh" path="res://Assets/Sounds/Musics/Try Again (The Bards Tale by RandomMind).mp3" id="3_tsoms"]
+[ext_resource type="AudioStream" uid="uid://uyebj7b3cvlb" path="res://Assets/Sounds/Sound Effects/Fail (by OwlStorm).wav" id="4_f4ytd"]
 [ext_resource type="Texture2D" uid="uid://bfyn8ttpp1y44" path="res://Assets/UI/Pause_btn_hover_placeholder.png" id="4_odgft"]
 [ext_resource type="Script" uid="uid://dyiwqj24umg20" path="res://Assets/Scripts/enemy_spawner.gd" id="8_6450k"]
+[ext_resource type="AudioStream" uid="uid://babn1c64cnd6m" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/confirmation_002.ogg" id="14_oljyh"]
+[ext_resource type="AudioStream" uid="uid://btxdeyigem87i" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/click_003.ogg" id="15_wp0uh"]
+[ext_resource type="AudioStream" uid="uid://bw4r7y6kmjfqu" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/drop_001.ogg" id="16_wp0uh"]
+[ext_resource type="PackedScene" uid="uid://5bvple3x8ft3" path="res://Assets/Scenes/fade.tscn" id="20_w3l0v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6450k"]
 shader = ExtResource("2_yk65x")
@@ -221,35 +228,28 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_6450k"]
 font_size = 32
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oljyh"]
-bg_color = Color(1, 0.3529412, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.1764706, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp0uh"]
-bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.29411766, 0.29411766, 0.29411766, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tresg"]
-bg_color = Color(1, 0.1764706, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 0.1764706, 0, 1)
-
 [node name="Game Scene" type="Node" unique_id=531808466 node_paths=PackedStringArray("ui_animator", "ui_manager")]
 process_mode = 3
 script = ExtResource("1_yub04")
 ui_animator = NodePath("UI/UI Animator")
 ui_manager = NodePath("UI")
+
+[node name="Game Music" type="AudioStreamPlayer" parent="." unique_id=473632312]
+process_mode = 3
+stream = ExtResource("2_tresg")
+volume_db = -15.0
+parameters/looping = true
+
+[node name="Try Again Music" type="AudioStreamPlayer" parent="." unique_id=521238999]
+process_mode = 3
+stream = ExtResource("3_tsoms")
+volume_db = -15.0
+parameters/looping = true
+
+[node name="FailSFX" type="AudioStreamPlayer" parent="." unique_id=552274931]
+stream = ExtResource("4_f4ytd")
+volume_db = -12.0
+pitch_scale = 2.0
 
 [node name="Game Actors" type="Node" parent="." unique_id=1020269354]
 process_mode = 1
@@ -318,6 +318,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+focus_mode = 0
 texture_normal = ExtResource("2_4aml7")
 texture_pressed = ExtResource("3_330yb")
 texture_hover = ExtResource("4_odgft")
@@ -441,9 +442,6 @@ layout_mode = 2
 [node name="Restart BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs" unique_id=721486383 instance=ExtResource("2_odgft")]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_oljyh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wp0uh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tresg")
 text = "RESTART"
 
 [node name="Return BTN" parent="UI/Lose Panel/MarginContainer/Score and Restart Box/BTNs" unique_id=986099281 instance=ExtResource("2_odgft")]
@@ -467,6 +465,18 @@ text = "---"
 label_settings = SubResource("LabelSettings_6450k")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ConfirmSFX" type="AudioStreamPlayer" parent="UI" unique_id=745841982]
+stream = ExtResource("14_oljyh")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="UI" unique_id=7964175]
+stream = ExtResource("15_wp0uh")
+
+[node name="ReturnSFX" type="AudioStreamPlayer" parent="UI" unique_id=2125607481]
+stream = ExtResource("16_wp0uh")
+
+[node name="Fade" parent="." unique_id=1143050736 instance=ExtResource("20_w3l0v")]
+initial_alpha = 1.0
 
 [connection signal="pressed" from="UI/UI Container/Pause BTN" to="UI" method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="UI/Pause Panel/Pause Menu/Resume BTN" to="UI" method="_on_resume_btn_pressed"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqxy1a2yg0hld" path="res://Assets/Scripts/coin.gd" id="1_0bfwn"]
 [ext_resource type="Texture2D" uid="uid://dsqrisuw1gu8v" path="res://Assets/Sprites/Coin_Placeholder.png" id="1_c3ovx"]
+[ext_resource type="AudioStream" uid="uid://bqc2keig30cpx" path="res://Assets/Sounds/Sound Effects/Coin_SFX (by s11it0).wav" id="3_60xg4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bfwn"]
 radius = 9.0
@@ -15,5 +16,10 @@ debug_color = Color(0.51444185, 0.57687694, 0, 0.41960785)
 
 [node name="Texture" type="Sprite2D" parent="." unique_id=2108608062]
 texture = ExtResource("1_c3ovx")
+
+[node name="Coin SFX" type="AudioStreamPlayer2D" parent="." unique_id=1996205160]
+stream = ExtResource("3_60xg4")
+volume_db = -3.0
+pitch_scale = 1.2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

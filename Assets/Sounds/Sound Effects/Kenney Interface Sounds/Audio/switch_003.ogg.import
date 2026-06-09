@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cxjuiqi3u3vyg"
+path="res://.godot/imported/switch_003.ogg-112e17eab73db6c30e88c71a1c91cddc.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/switch_003.ogg"
+dest_files=["res://.godot/imported/switch_003.ogg-112e17eab73db6c30e88c71a1c91cddc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cde1ar0tw2ilm"
+path="res://.godot/imported/question_004.ogg-d0244f297356f9d536bec169b37839cd.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/question_004.ogg"
+dest_files=["res://.godot/imported/question_004.ogg-d0244f297356f9d536bec169b37839cd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bqc2keig30cpx"
+path="res://.godot/imported/Coin_SFX (by s11it0).wav-752c5a25f09ea1e30b92eddd8c00566c.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/Coin_SFX (by s11it0).wav"
+dest_files=["res://.godot/imported/Coin_SFX (by s11it0).wav-752c5a25f09ea1e30b92eddd8c00566c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

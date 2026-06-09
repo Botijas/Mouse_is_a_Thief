@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cg2sh48bexwe" path="res://Assets/Scripts/main_menu.gd" id="1_fsbqx"]
 [ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="1_x6jn2"]
+[ext_resource type="AudioStream" uid="uid://babn1c64cnd6m" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/confirmation_002.ogg" id="3_cbhea"]
+[ext_resource type="AudioStream" uid="uid://btxdeyigem87i" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/click_003.ogg" id="4_tanm1"]
+[ext_resource type="AudioStream" uid="uid://cnyjuev02b00" path="res://Assets/Sounds/Musics/Menu (Exploration by RandomMind).mp3" id="5_6qsvb"]
+[ext_resource type="PackedScene" uid="uid://ce62qendhmajr" path="res://Assets/Scenes/tutorial.tscn" id="5_hxcs8"]
+[ext_resource type="PackedScene" uid="uid://5bvple3x8ft3" path="res://Assets/Scenes/fade.tscn" id="6_fadmi"]
+[ext_resource type="PackedScene" uid="uid://juubboyy5oyj" path="res://Assets/Scenes/credits_menu.tscn" id="6_xkmpe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_77rv3"]
 font_size = 48
@@ -9,7 +15,7 @@ font_size = 48
 [sub_resource type="LabelSettings" id="LabelSettings_cbhea"]
 font_size = 24
 
-[node name="Main Menu" type="Control" unique_id=1014350268 node_paths=PackedStringArray("score", "play_btn", "tutorial_btn", "quit_btn")]
+[node name="Main Menu" type="Control" unique_id=1014350268 node_paths=PackedStringArray("score", "play_btn", "tutorial_btn", "quit_btn", "confirm_sfx", "click_sfx")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,12 +23,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsbqx")
-score = NodePath("MarginContainer/Score Container/Score")
-play_btn = NodePath("MarginContainer/BTN Container/Play BTN")
-tutorial_btn = NodePath("MarginContainer/BTN Container/Tutorial BTN")
-quit_btn = NodePath("MarginContainer/BTN Container/Quit BTN")
+score = NodePath("Menu/Score Container/Score")
+play_btn = NodePath("Menu/BTN Container/Play BTN")
+tutorial_btn = NodePath("Menu/BTN Container/Tutorial BTN")
+quit_btn = NodePath("Menu/BTN Container/Quit BTN")
+confirm_sfx = NodePath("Menu/BTN Container/ConfirmSFX")
+click_sfx = NodePath("Menu/BTN Container/ClickSFX")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=752523209]
+[node name="Menu" type="MarginContainer" parent="." unique_id=752523209]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,53 +42,81 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Tittle" type="Label" parent="MarginContainer" unique_id=920675472]
+[node name="Tittle" type="Label" parent="Menu" unique_id=920675472]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Mouse is a Thief"
 label_settings = SubResource("LabelSettings_77rv3")
 
-[node name="Score Container" type="VBoxContainer" parent="MarginContainer" unique_id=1440167482]
+[node name="Score Container" type="VBoxContainer" parent="Menu" unique_id=1440167482]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Text" type="Label" parent="MarginContainer/Score Container" unique_id=1421438669]
+[node name="Text" type="Label" parent="Menu/Score Container" unique_id=1421438669]
 layout_mode = 2
 text = "High Score"
 label_settings = SubResource("LabelSettings_cbhea")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Score" type="Label" parent="MarginContainer/Score Container" unique_id=1472604934]
+[node name="Score" type="Label" parent="Menu/Score Container" unique_id=1472604934]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_cbhea")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BTN Container" type="HBoxContainer" parent="MarginContainer" unique_id=184276922]
+[node name="BTN Container" type="HBoxContainer" parent="Menu" unique_id=184276922]
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
 
-[node name="Play BTN" parent="MarginContainer/BTN Container" unique_id=1735193444 instance=ExtResource("1_x6jn2")]
+[node name="Play BTN" parent="Menu/BTN Container" unique_id=1735193444 instance=ExtResource("1_x6jn2")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "PLAY"
 
-[node name="Tutorial BTN" parent="MarginContainer/BTN Container" unique_id=1247370674 instance=ExtResource("1_x6jn2")]
+[node name="Tutorial BTN" parent="Menu/BTN Container" unique_id=1247370674 instance=ExtResource("1_x6jn2")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "TUTORIAL"
 
-[node name="Quit BTN" parent="MarginContainer/BTN Container" unique_id=388644297 instance=ExtResource("1_x6jn2")]
+[node name="Credits BTN" parent="Menu/BTN Container" unique_id=1606157575 instance=ExtResource("1_x6jn2")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CREDITS"
+
+[node name="Quit BTN" parent="Menu/BTN Container" unique_id=388644297 instance=ExtResource("1_x6jn2")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "QUIT"
 
-[connection signal="pressed" from="MarginContainer/BTN Container/Play BTN" to="." method="_on_play_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/BTN Container/Tutorial BTN" to="." method="_on_tutorial_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/BTN Container/Quit BTN" to="." method="_on_exit_btn_pressed"]
+[node name="ConfirmSFX" type="AudioStreamPlayer" parent="Menu/BTN Container" unique_id=1419522478]
+stream = ExtResource("3_cbhea")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="Menu/BTN Container" unique_id=1422277194]
+stream = ExtResource("4_tanm1")
+
+[node name="Tutorial" parent="." unique_id=1469777346 instance=ExtResource("5_hxcs8")]
+visible = false
+layout_mode = 1
+
+[node name="Credits Menu" parent="." unique_id=809111697 node_paths=PackedStringArray("menu") instance=ExtResource("6_xkmpe")]
+visible = false
+layout_mode = 1
+menu = NodePath("../Menu")
+
+[node name="Menu Music" type="AudioStreamPlayer" parent="." unique_id=1734109590]
+stream = ExtResource("5_6qsvb")
+volume_db = -15.0
+
+[node name="Fade" parent="." unique_id=1143050736 instance=ExtResource("6_fadmi")]
+visible = false
+
+[connection signal="pressed" from="Menu/BTN Container/Play BTN" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Menu/BTN Container/Tutorial BTN" to="." method="_on_tutorial_btn_pressed"]
+[connection signal="pressed" from="Menu/BTN Container/Credits BTN" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="Menu/BTN Container/Quit BTN" to="." method="_on_exit_btn_pressed"]

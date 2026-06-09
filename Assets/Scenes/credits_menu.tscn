@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://juubboyy5oyj"]
+
+[ext_resource type="Script" uid="uid://ce3iv6ch1k5mt" path="res://Assets/Scripts/credits_menu.gd" id="1_r186g"]
+[ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="2_a8byq"]
+[ext_resource type="AudioStream" uid="uid://bw4r7y6kmjfqu" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/drop_001.ogg" id="3_rj3sd"]
+
+[node name="Credits Menu" type="Control" unique_id=809111697 node_paths=PackedStringArray("return_btn", "return_sfx")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r186g")
+return_btn = NodePath("Margens/VBoxContainer/Return BTN")
+return_sfx = NodePath("Margens/ReturnSFX")
+
+[node name="Margens" type="MarginContainer" parent="." unique_id=299007617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margens" unique_id=1034196824]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Margens/VBoxContainer" unique_id=1406701412]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Programmer" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=1190768636]
+layout_mode = 2
+text = "Programmer: "
+
+[node name="Programmer Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=1712026533]
+layout_mode = 2
+text = "Botijas"
+
+[node name="Game Design" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=697874799]
+layout_mode = 2
+text = "Game Designer:"
+
+[node name="Game Designer Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=999213371]
+layout_mode = 2
+text = "Botijas"
+
+[node name="Musics" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=1355695530]
+layout_mode = 2
+text = "Musics:"
+
+[node name="Musics Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=58686982]
+layout_mode = 2
+text = "RandomMind"
+
+[node name="Ui SFXs" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=1388748874]
+layout_mode = 2
+text = "UI SFXs:"
+
+[node name="Ui SFXs Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=297586793]
+layout_mode = 2
+text = "Kenney"
+
+[node name="Return BTN" parent="Margens/VBoxContainer" unique_id=1735193444 instance=ExtResource("2_a8byq")]
+layout_mode = 2
+size_flags_vertical = 8
+text = "RETURN TO MENU"
+
+[node name="ReturnSFX" type="AudioStreamPlayer" parent="Margens" unique_id=1146080235]
+stream = ExtResource("3_rj3sd")
+
+[connection signal="pressed" from="Margens/VBoxContainer/Return BTN" to="." method="_on_return_btn_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvut8peybmge6"
+path="res://.godot/imported/toggle_003.ogg-0c418cf5ed654b942a8568beace04930.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/toggle_003.ogg"
+dest_files=["res://.godot/imported/toggle_003.ogg-0c418cf5ed654b942a8568beace04930.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

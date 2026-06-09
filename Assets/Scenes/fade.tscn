@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://5bvple3x8ft3"]
+
+[sub_resource type="GDScript" id="GDScript_k05bp"]
+script/source = "extends CanvasLayer
+
+@onready var color_rect: ColorRect = $ColorRect
+@export_range(0.0, 1.0) var initial_alpha : float
+
+func _ready() -> void:
+	color_rect.color.a = initial_alpha
+
+func fade(target_alpha : float, duration := 1.0) -> Tween:
+	var tween = create_tween()
+	tween.tween_property(color_rect, \"color:a\", target_alpha, duration)
+	return tween
+"
+
+[node name="Fade" type="CanvasLayer" unique_id=1143050736]
+layer = 2
+script = SubResource("GDScript_k05bp")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1075547247]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.21832123, 7.184718e-05, 0.24665248, 1)

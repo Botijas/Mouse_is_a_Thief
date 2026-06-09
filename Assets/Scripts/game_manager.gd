@@ -1,5 +1,7 @@
 extends Node
 
+@onready var fade: CanvasLayer = $Fade
+
 enum GAME_STATES {
 	Playing, 
 	Losing,
@@ -15,17 +17,27 @@ var data_path = "user://data.json"
 @export var ui_animator : AnimationPlayer
 @export var ui_manager : Control
 
+@onready var click_sfx: AudioStreamPlayer = $UI/ClickSFX
+@onready var fail_sfx: AudioStreamPlayer = $FailSFX
+@onready var game_music: AudioStreamPlayer = $"Game Music"
+@onready var try_again_music: AudioStreamPlayer = $"Try Again Music"
+
 signal lose(to: String)
 
 func _ready() -> void:
+	actual_game_state = GAME_STATES.Paused
+	game_music.play()
+	await fade.fade(0.0, 0.7).finished
 	read_data()
 	actual_game_state = GAME_STATES.Playing
 	lose.connect(_on_lose)
 
 func _process(delta: float) -> void:
+	var lose : bool = false
 	match actual_game_state:
 		#Playing
 		0:
+			game_music.volume_db = -15
 			if get_tree().paused != false:
 				get_tree().paused = false
 		#Losing
@@ -34,6 +46,7 @@ func _process(delta: float) -> void:
 				get_tree().paused = true
 		#Paused
 		2:
+			game_music.volume_db = -25
 			if get_tree().paused != true:
 				get_tree().paused = true
 
@@ -42,6 +55,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		# Este "if" verifica se um animação não está sendo tocada 
 		if !ui_animator.is_playing():
+			click_sfx.play()
 			# Esse "if" e "else" determinam para qual estado ele vai
 			if actual_game_state == GAME_STATES.Playing:
 				go_to_paused()
@@ -96,6 +110,9 @@ func go_to_losing(to: String) -> void:
 	read_data()
 	ui_manager.set_scores_on_labels()
 	actual_game_state = GAME_STATES.Losing
+	game_music.playing = false
+	fail_sfx.play()
+	try_again_music.play(2.2)
 
 func _on_lose(to: String):
 	save_data()

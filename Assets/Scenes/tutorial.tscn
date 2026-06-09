@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ledwo2ihlc1" path="res://Assets/Sprites/Walk_Enemy_Placeholder.png" id="2_fjum5"]
 [ext_resource type="Texture2D" uid="uid://dsqrisuw1gu8v" path="res://Assets/Sprites/Coin_Placeholder.png" id="3_wywo6"]
 [ext_resource type="PackedScene" uid="uid://ceat4aj4ngfec" path="res://Assets/UI/default_btn.tscn" id="5_dlbb6"]
+[ext_resource type="AudioStream" uid="uid://bw4r7y6kmjfqu" path="res://Assets/Sounds/Sound Effects/Kenney Interface Sounds/Audio/drop_001.ogg" id="6_237av"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlbb6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -109,5 +110,8 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 8
 text = "RETURN TO MENU"
+
+[node name="ReturnSFX" type="AudioStreamPlayer" parent="MarginContainer" unique_id=1425817196]
+stream = ExtResource("6_237av")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Return BTN" to="." method="_on_return_btn_pressed"]
