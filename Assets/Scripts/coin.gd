@@ -7,3 +7,4 @@ func _on_body_entered(body: Node2D) -> void:
 		get_node_or_null("/root/Game Scene").points += 1
 		coin_sfx.play()
 		visible = false
+		

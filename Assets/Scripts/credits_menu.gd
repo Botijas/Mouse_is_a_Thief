@@ -9,6 +9,5 @@ var main_menu_scene := "res://Assets/Scenes/main_menu.tscn"
 
 func _on_return_btn_pressed() -> void:
 	return_sfx.play()
-	await return_sfx.finished
 	visible = false
 	menu.visible = true

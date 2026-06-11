@@ -67,6 +67,22 @@ text = "UI SFXs:"
 layout_mode = 2
 text = "Kenney"
 
+[node name="Coin SFX" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=954438959]
+layout_mode = 2
+text = "Coin SFX:"
+
+[node name="Coin SFX Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=960726328]
+layout_mode = 2
+text = "s11it0"
+
+[node name="Fail SFX" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=1474974994]
+layout_mode = 2
+text = "Fail SFX:"
+
+[node name="Fail SFX Name" type="Label" parent="Margens/VBoxContainer/GridContainer" unique_id=641656959]
+layout_mode = 2
+text = "OwlStorm"
+
 [node name="Return BTN" parent="Margens/VBoxContainer" unique_id=1735193444 instance=ExtResource("2_a8byq")]
 layout_mode = 2
 size_flags_vertical = 8
